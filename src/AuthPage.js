@@ -1,15 +1,17 @@
 import { useState } from 'react';
+import { signIn, signUp, getUser } from './services/fetch-utils.js';
 
-export default function AuthPage() {
+export default function AuthPage({ setUser }) {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  function handleSignIn() {
-
+  async function handleSignIn() {
+    await signIn(email, password);
   }
 
-  function handleSignOut() {
+  async function handleSignOut() {
+    await signUp(email, password);
 
   }
 
@@ -22,14 +24,14 @@ export default function AuthPage() {
       <form onSubmit={handleSubmit}>
         <label>
           Email:
-          <input value={email}/>
+          <input value={email} onChange={ e => setEmail(e.target.value) } type="email" required/>
         </label>
         <label>
           Password:
-          <input value={password}/>
+          <input value={password} required onChange={ e => setPassword(e.target.value) } type="password"/>
         </label>
-        <button onClick={ e => handleSignIn(e.target.value) }>Sign In</button>
-        <button onClick={e => handleSignOut(e.target.value) }>Sign Out</button>
+        <button onClick={ handleSignIn }>Sign In</button>
+        <button onClick={ handleSignOut }>Sign Out</button>
       </form>
     </div>
   );
