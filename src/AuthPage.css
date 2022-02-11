@@ -1,0 +1,20 @@
+label {
+  display: block;
+  margin: 5px;
+}
+
+.auth-page {
+  height: 100vh;
+  font-size: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input, button {
+  font-size: inherit;
+}
+
+button {
+  margin: 5px;
+}

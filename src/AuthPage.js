@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { signIn, signUp, getUser } from './services/fetch-utils.js';
+import './AuthPage.css';
 
 export default function AuthPage({ setUser }) {
 
@@ -20,7 +21,7 @@ export default function AuthPage({ setUser }) {
   }
 
   return (
-    <div>
+    <div className="auth-page">
       <form onSubmit={handleSubmit}>
         <label>
           Email:
