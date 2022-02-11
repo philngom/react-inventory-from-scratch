@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 
+
 export default function MovieDetailPage() {
   const [movie, setMovie] = useState();
   const params = useParams();
@@ -13,9 +14,10 @@ export default function MovieDetailPage() {
       setMovie(movie);
     }
     getSingleMovie();
-  }, [params.id]);
+  }, [params.id, movie]);
 
   return (
+
     <div>
       {movie.name}
     </div>

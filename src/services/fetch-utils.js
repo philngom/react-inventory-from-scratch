@@ -42,3 +42,13 @@ export async function createMovie(movie) {
 
   return checkError(response);
 }
+
+export async function fetchSingleMovie(id) {
+  const response = await client
+    .from('movies')
+    .match({ id })
+    .select()
+    .single();
+
+  return checkError(response);
+}
