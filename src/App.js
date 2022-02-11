@@ -2,7 +2,8 @@ import {
   BrowserRouter as Router,
   Route,
   Link,
-  Switch
+  Switch,
+  Redirect
 } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import './App.css';
@@ -53,8 +54,15 @@ function App() {
             <Route exact path='/'>
               {
                 user
-                  ? <MovieListPage />
+                  ? <Redirect to="/movie-list"/>
                   : <AuthPage setUser={ setUser }/>
+              }
+            </Route>
+            <Route exact path='/movie-list'>
+              {
+                user
+                  ? <MovieListPage />
+                  : <Redirect to='/'/>
               }
             </Route>
           </Switch>
