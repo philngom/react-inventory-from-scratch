@@ -7,6 +7,7 @@ import {
 import { useState, useEffect } from 'react';
 import './App.css';
 import AuthPage from './AuthPage';
+import MovieListPage from './MovieListPage';
 import { getUser } from './services/fetch-utils.js';
 
 
@@ -29,10 +30,11 @@ function App() {
         </header>
         <main>
           <Switch>
-            <Route>
+            <Route exact path='/'>
               {
-                !user &&
-            <AuthPage setUser={ setUser }/>
+                user
+                  ? <MovieListPage />
+                  : <AuthPage setUser={ setUser }/>
               }
             </Route>
           </Switch>

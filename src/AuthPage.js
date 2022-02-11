@@ -12,7 +12,7 @@ export default function AuthPage({ setUser }) {
     setUser(user);
   }
 
-  async function handleSignOut() {
+  async function handleSignUp() {
     const user = await signUp(email, password);
     setUser(user);
 
@@ -34,7 +34,7 @@ export default function AuthPage({ setUser }) {
           <input value={password} required onChange={ e => setPassword(e.target.value) } type="password"/>
         </label>
         <button onClick={ handleSignIn }>Sign In</button>
-        <button onClick={ handleSignOut }>Sign Out</button>
+        <button onClick={ handleSignUp }>Sign Up</button>
       </form>
     </div>
   );
