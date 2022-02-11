@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { signIn, signUp, getUser } from './services/fetch-utils.js';
+import { signIn, signUp } from './services/fetch-utils.js';
 import './AuthPage.css';
 
 export default function AuthPage({ setUser }) {
@@ -8,11 +8,13 @@ export default function AuthPage({ setUser }) {
   const [password, setPassword] = useState('');
 
   async function handleSignIn() {
-    await signIn(email, password);
+    const user = await signIn(email, password);
+    setUser(user);
   }
 
   async function handleSignOut() {
-    await signUp(email, password);
+    const user = await signUp(email, password);
+    setUser(user);
 
   }
 
