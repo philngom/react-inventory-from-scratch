@@ -10,6 +10,7 @@ import './App.css';
 import AuthPage from './AuthPage';
 import MovieListPage from './MovieListPage';
 import CreateMovie from './CreateMovie';
+import MovieDetailPage from './MovieDetailPage';
 import { getUser, logout } from './services/fetch-utils.js';
 
 
@@ -70,6 +71,13 @@ function App() {
               {
                 user
                   ? <CreateMovie />
+                  : <Redirect to='/'/>
+              }
+            </Route>
+            <Route exact path='/movie-list/:id'>
+              {
+                user
+                  ? <MovieDetailPage />
                   : <Redirect to='/'/>
               }
             </Route>
