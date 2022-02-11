@@ -34,3 +34,11 @@ export async function getMovies() {
     .select();
   return checkError(response);
 }
+
+export async function createMovie(movie) {
+  const response = await client
+    .from('movies')
+    .insert(movie);
+
+  return checkError(response);
+}
