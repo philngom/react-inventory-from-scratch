@@ -21,3 +21,9 @@ export async function signUp(email, password) {
 
   return response.user;
 }
+
+export async function logout() {
+  await client.auth.signOut();
+
+  return window.location.href = '../';
+}

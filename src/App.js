@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import AuthPage from './AuthPage';
 import MovieListPage from './MovieListPage';
-import { getUser } from './services/fetch-utils.js';
+import { getUser, logout } from './services/fetch-utils.js';
 
 
 function App() {
@@ -23,10 +23,30 @@ function App() {
     fetchUser();
   }, []);
 
+  async function handleLogout() {
+    await logout();
+
+    setUser(null);
+  }
+
   return (
     <Router>
       <div className="App">
         <header className="App-header">
+          {
+            user &&
+            <ul>
+              <li>
+                <Link to='/movie-list'>Movies</Link>
+              </li>
+              <li>
+                <Link to='/create'>Add Movie</Link>
+              </li>
+              <li>
+                <button onClick={ handleLogout }>Logout</button>
+              </li>
+            </ul>
+          }
         </header>
         <main>
           <Switch>
