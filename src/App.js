@@ -23,7 +23,7 @@ function App() {
       setUser(user);
     }
     fetchUser();
-  }, []);
+  }, [user]);
 
   async function handleLogout() {
     await logout();
