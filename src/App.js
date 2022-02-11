@@ -1,24 +1,90 @@
-import logo from './logo.svg';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  Redirect
+} from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import './App.css';
+import AuthPage from './AuthPage';
+import MovieListPage from './MovieListPage';
+import CreateMovie from './CreateMovie';
+import MovieDetailPage from './MovieDetailPage';
+import { getUser, logout } from './services/fetch-utils.js';
+
 
 function App() {
+
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    async function fetchUser() {
+      const user = await getUser();
+      setUser(user);
+    }
+    fetchUser();
+  }, [user]);
+
+  async function handleLogout() {
+    await logout();
+
+    setUser(null);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <header className="App-header">
+          {
+            user &&
+            <ul>
+              <li>
+                <Link to='/movie-list'>Movies</Link>
+              </li>
+              <li>
+                <Link to='/create'>Add Movie</Link>
+              </li>
+              <li>
+                <button onClick={ handleLogout }>Logout</button>
+              </li>
+            </ul>
+          }
+        </header>
+        <main>
+          <Switch>
+            <Route exact path='/'>
+              {
+                user
+                  ? <Redirect to="/movie-list"/>
+                  : <AuthPage setUser={ setUser }/>
+              }
+            </Route>
+            <Route exact path='/movie-list'>
+              {
+                user
+                  ? <MovieListPage />
+                  : <Redirect to='/'/>
+              }
+            </Route>
+            <Route exact path='/create'>
+              {
+                user
+                  ? <CreateMovie />
+                  : <Redirect to='/'/>
+              }
+            </Route>
+            <Route exact path='/movie-list/:id'>
+              {
+                user
+                  ? <MovieDetailPage />
+                  : <Redirect to='/'/>
+              }
+            </Route>
+          </Switch>
+        </main>
+      </div>
+    </Router>
   );
 }
 
