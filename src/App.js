@@ -9,6 +9,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import AuthPage from './AuthPage';
 import MovieListPage from './MovieListPage';
+import CreateMovie from './CreateMovie';
 import { getUser, logout } from './services/fetch-utils.js';
 
 
@@ -62,6 +63,13 @@ function App() {
               {
                 user
                   ? <MovieListPage />
+                  : <Redirect to='/'/>
+              }
+            </Route>
+            <Route exact path='/create'>
+              {
+                user
+                  ? <CreateMovie />
                   : <Redirect to='/'/>
               }
             </Route>
