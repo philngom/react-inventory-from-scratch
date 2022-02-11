@@ -19,10 +19,10 @@ export default function MovieDetailPage() {
   return (
 
     <div>
-      <p>{movie.name}</p>
-      <p>{movie.year_released}</p>
-      <p>{movie.director}</p>
-      <p>{movie.main_character}</p>
+      <p>Movie Title: {movie.name}</p>
+      <p>Year released: {movie.year_released}</p>
+      <p>Director: {movie.director}</p>
+      <p>Main Character: {movie.main_character}</p>
     </div>
   );
 }
