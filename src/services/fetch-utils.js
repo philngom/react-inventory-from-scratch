@@ -46,8 +46,8 @@ export async function createMovie(movie) {
 export async function fetchSingleMovie(id) {
   const response = await client
     .from('movies')
-    .match({ id })
     .select()
+    .match({ id })
     .single();
 
   return checkError(response);

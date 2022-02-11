@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 
 
 export default function MovieDetailPage() {
-  const [movie, setMovie] = useState();
+  const [movie, setMovie] = useState('');
   const params = useParams();
 
   useEffect(() => {
