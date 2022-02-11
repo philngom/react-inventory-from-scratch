@@ -24,3 +24,13 @@
     transform: rotate(360deg);
   }
 }
+
+li {
+  list-style-type: none;
+  margin: 5px;
+}
+
+ul {
+  display: flex;
+  justify-content: center;
+}
